@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        python 'Python'  // Must match name in Jenkins Global Tool Config
+        python 'Python3'  // Must match name in Jenkins Global Tool Config
     }
     environment {
         VENV_DIR = 'venv'
