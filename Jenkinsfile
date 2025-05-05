@@ -14,9 +14,9 @@ pipeline {
 
         stage('Set up Python environment') {
             steps {
-                sh 'python -m venv $VENV_DIR'
-                sh './$VENV_DIR/bin/pip install --upgrade pip'
-                sh './$VENV_DIR/bin/pip install -r requirements.txt'
+                bat 'python -m venv $VENV_DIR'
+                bat './$VENV_DIR/bin/pip install --upgrade pip'
+                bat './$VENV_DIR/bin/pip install -r requirements.txt'
             }
         }
 
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy (Run Flask App)') {
             steps {
-                sh 'nohup ./$VENV_DIR/bin/python app.py &'
+                bat 'nohup ./$VENV_DIR/bin/python app.py &'
                 echo 'Flask app started!'
             }
         }
