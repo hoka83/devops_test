@@ -12,16 +12,36 @@ pipeline {
             }
         }
 
-       stage('Set up Python environment') {
-    steps {
-        // Create the virtual environment
-        bat 'python -m venv %VENV_DIR%'
+       pipeline {
+    agent any
 
-        // Upgrade pip in the virtual environment
-        bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install --upgrade pip'
+    environment {
+        VENV_DIR = 'venv'  // Define your virtual environment directory
+    }
 
-        // Install dependencies from requirements.txt
-        bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt'
+    stages {
+        stage('Set up Python environment') {
+            steps {
+                // Create the virtual environment
+                bat 'python -m venv %VENV_DIR%'
+
+                // Ensure pip is installed in the virtual environment
+                bat 'call %VENV_DIR%\\Scripts\\activate.bat && python -m ensurepip --upgrade'
+
+                // Upgrade pip in the virtual environment
+                bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install --upgrade pip'
+
+                // Install dependencies from requirements.txt
+                bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Script') {
+            steps {
+                // Run the Python script inside the virtual environment
+                bat 'call %VENV_DIR%\\Scripts\\activate.bat && python your_script.py'
+            }
+        }
     }
 }
 
