@@ -12,13 +12,19 @@ pipeline {
             }
         }
 
-        stage('Set up Python environment') {
-            steps {
-                bat 'python -m venv $VENV_DIR'
-                bat './$VENV_DIR/bin/pip install --upgrade pip'
-                bat './$VENV_DIR/bin/pip install -r requirements.txt'
-            }
-        }
+       stage('Set up Python environment') {
+    steps {
+        // Create the virtual environment
+        bat 'python -m venv %VENV_DIR%'
+
+        // Upgrade pip in the virtual environment
+        bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install --upgrade pip'
+
+        // Install dependencies from requirements.txt
+        bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt'
+    }
+}
+
 
         stage('Run Tests') {
             steps {
