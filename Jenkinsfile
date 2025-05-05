@@ -12,12 +12,6 @@ pipeline {
             }
         }
 
-       pipeline {
-    agent any
-
-    environment {
-        VENV_DIR = 'venv'  // Define your virtual environment directory
-    }
 
     stages {
         stage('Set up Python environment') {
