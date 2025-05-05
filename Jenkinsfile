@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/hoka83/devops_test.git'
+                git branch: 'main', url: 'https://github.com/hoka83/devops_test.git'
             }
         }
 
