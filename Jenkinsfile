@@ -30,7 +30,12 @@ pipeline {
             }   
         }
 
-     
+             stage('Run Script') {
+            steps {
+                // Run the Python script inside the virtual environment
+                bat 'call %VENV_DIR%\\Scripts\\activate.bat && python your_script.py'
+            }
+        }
 
 
         stage('Run Tests') {
