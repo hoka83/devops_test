@@ -29,7 +29,7 @@ call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt
              stage('Run Script') {
             steps {
                 // Run the Python script inside the virtual environment
-                bat 'call %VENV_DIR%\\Scripts\\activate.bat && python your_script.py'
+                bat 'call %VENV_DIR%\\Scripts\\activate.bat && python test.py'
             }
         }
 
