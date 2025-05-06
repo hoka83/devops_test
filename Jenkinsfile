@@ -43,7 +43,7 @@ call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt
 
         stage('Deploy (Run Flask App)') {
             steps {
-                bat 'nohup ./$VENV_DIR/bin/python app.py &'
+                bat 'nohup ./$VENV_DIR/bin/python test.py &'
                 echo 'Flask app started!'
             }
         }
