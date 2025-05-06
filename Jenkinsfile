@@ -15,10 +15,10 @@ pipeline {
 
    
         stage('Set up Python environment') {
-             steps {
+            steps {
                 bat 'python -m venv %VENV_DIR%'
                 bat '''
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+curl https://bootstrap.pypa.io/pip/3.8/get-pip.py -o get-pip.py
 call %VENV_DIR%\\Scripts\\activate.bat && python get-pip.py
 call %VENV_DIR%\\Scripts\\activate.bat && pip install --upgrade pip
 call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt
