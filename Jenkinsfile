@@ -15,19 +15,15 @@ pipeline {
 
    
         stage('Set up Python environment') {
-            steps {
-                // Create the virtual environment
+             steps {
                 bat 'python -m venv %VENV_DIR%'
-
-                // Ensure pip is installed in the virtual environment
-                bat 'call %VENV_DIR%\\Scripts\\activate.bat && python -m ensurepip --upgrade'
-
-                // Upgrade pip in the virtual environment
-                bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install --upgrade pip'
-
-                // Install dependencies from requirements.txt
-                bat 'call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt'
-            }   
+                bat '''
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+call %VENV_DIR%\\Scripts\\activate.bat && python get-pip.py
+call %VENV_DIR%\\Scripts\\activate.bat && pip install --upgrade pip
+call %VENV_DIR%\\Scripts\\activate.bat && pip install -r requirements.txt
+'''
+            }
         }
 
              stage('Run Script') {
