@@ -16,20 +16,20 @@ pipeline {
    
        stage('Terraform Init') {
       steps {
-        sh 'terraform init'
+        bat 'terraform init'
       }
     }
 
     stage('Terraform Plan') {
       steps {
-        sh 'terraform plan'
+        bat 'terraform plan'
       }
     }
 
     stage('Terraform Apply') {
       steps {
         input "Apply changes?"  // هيوقف يستنى تأكيد منك
-        sh 'terraform apply -auto-approve'
+        bat 'terraform apply -auto-approve'
       }
     }
 }
