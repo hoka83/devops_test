@@ -28,7 +28,7 @@ pipeline {
 
     stage('Terraform Apply') {
       steps {
-        input "Apply changes?"  // هيوقف يستنى تأكيد منك
+        
         bat 'terraform apply -auto-approve'
       }
     }
