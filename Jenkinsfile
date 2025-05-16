@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        AWS_ACCESS_KEY_ID     = credentials('2').username
-        AWS_SECRET_ACCESS_KEY = credentials('2').password
-    }
-
     stages {
         stage('Clone Repository') {
             steps {
