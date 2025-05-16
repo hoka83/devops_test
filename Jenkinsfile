@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        VENV_DIR = 'venv'
+        AWS_ACCESS_KEY_ID     = credentials('2').username
+        AWS_SECRET_ACCESS_KEY = credentials('2').password
     }
 
     stages {
